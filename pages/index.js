@@ -13,7 +13,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-           Read <Link href="/posts/first-post"><a>Feature / Lesson oi 6!</a></Link>
+           Read <Link href="/posts/first-post"><a>Feature / Lesson oi 7!</a></Link>
         </h1>
         <p className={styles.description}>
           Get started by editing{' '}
