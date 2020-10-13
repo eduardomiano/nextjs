@@ -1,19 +1,21 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import { getSortedPostsData } from '../lib/posts'
 
-export default function Home() {
+
+
+export default function Home({ allPostsData }) {
   return (
     <div className={styles.container}>
       <Head>
         <title>PME Team - Dedoduro</title>
         <link rel="icon" href="/favicon.ico" />
-        
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-           Read <Link href="/posts/first-post"><a>Feature / Lesson oi 6!</a></Link>
+           Read <Link href="/posts/first-post"><a>Feature / Lesson Paçoca!</a></Link>
         </h1>
         <p className={styles.description}>
           Get started by editing{' '}
@@ -51,6 +53,22 @@ export default function Home() {
         </div>
       </main>
 
+      <section className={styles.headingMd}>…</section>
+      <section className={`${styles.headingMd} ${styles.padding1px}`}>
+        <h2 className={styles.headingLg}>Blog</h2>
+        <ul className={styles.list}>
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={styles.listItem} key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -64,3 +82,10 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: { allPostsData }
+  };
+};
